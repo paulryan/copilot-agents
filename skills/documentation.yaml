@@ -1,0 +1,41 @@
+name: documentation
+version: 1.0.0
+description: >
+  Writes and updates documentation for code, APIs, and projects. Produces
+  clear, accurate, and consistent documentation in the style already present
+  in the repository.
+parameters:
+  - name: doc_type
+    description: >
+      The kind of documentation to produce.
+      Allowed values: inline, readme, api, architecture, changelog.
+    required: false
+    default: "inline"
+  - name: audience
+    description: >
+      The intended audience for the documentation.
+      Allowed values: developer, end-user, ops.
+    required: false
+    default: "developer"
+  - name: style_guide
+    description: >
+      Name or URL of the style guide to follow (e.g. Google, Microsoft).
+      If omitted, the style is inferred from existing documentation.
+    required: false
+    default: ""
+instructions: |
+  You are writing or updating documentation. Follow these steps:
+
+  1. Identify the 'doc_type' and adjust format accordingly:
+     - inline: docstrings / inline comments following the project's convention
+     - readme: a README.md covering purpose, installation, usage, and examples
+     - api: reference documentation for every public symbol
+     - architecture: high-level overview of components and their relationships
+     - changelog: structured list of changes since the last version
+  2. Tailor language and assumed knowledge level to the 'audience'.
+  3. Adhere to the 'style_guide' if provided, otherwise match the tone and
+     formatting already used in the project.
+  4. Ensure all examples are accurate and runnable.
+  5. Do not duplicate information already present elsewhere; instead, link to it.
+  6. Flag any aspects of the code that are unclear or undocumented and require
+     clarification from the author before documentation can be completed.

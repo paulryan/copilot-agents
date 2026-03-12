@@ -1,0 +1,40 @@
+name: refactoring
+version: 1.0.0
+description: >
+  Refactors existing code to improve its internal structure without changing
+  its external behaviour. Applies recognised refactoring patterns and explains
+  each transformation.
+parameters:
+  - name: goals
+    description: >
+      Comma-separated list of refactoring goals.
+      Allowed values: readability, duplication, complexity, naming,
+      solid-principles, performance.
+    required: false
+    default: "readability,duplication,complexity"
+  - name: preserve_api
+    description: >
+      When true, all public interfaces must remain unchanged.
+      Allowed values: true | false.
+    required: false
+    default: "true"
+instructions: |
+  You are refactoring code. Follow these steps:
+
+  1. Understand the current code's behaviour completely before proposing changes.
+  2. Identify opportunities aligned with the requested 'goals':
+     - readability: rename ambiguous identifiers, simplify expressions
+     - duplication: extract shared logic into reusable functions or classes
+     - complexity: reduce cyclomatic complexity, flatten nested conditionals
+     - naming: apply consistent, descriptive naming conventions
+     - solid-principles: improve adherence to SOLID design principles
+     - performance: eliminate unnecessary computations or allocations
+  3. If 'preserve_api' is true, ensure every public method, function, class,
+     and module signature remains unchanged.
+  4. Apply one refactoring at a time and describe it using the standard name
+     (e.g. "Extract Method", "Rename Variable", "Replace Conditional with
+     Polymorphism").
+  5. After all changes, provide a summary table listing each refactoring
+     applied, the pattern used, and the benefit achieved.
+  6. Note any areas where a refactoring would be beneficial but cannot be
+     applied safely without additional context or tests.

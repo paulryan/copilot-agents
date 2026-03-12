@@ -1,0 +1,40 @@
+name: quality-assurance-set
+version: 1.0.0
+description: >
+  A coordinated set of agents that together provide comprehensive quality
+  assurance across a codebase: code review, security analysis, and automated
+  test generation. Best applied to pull requests before merging.
+category: set
+agents:
+  - name: code-reviewer
+    path: agents/generic/code-reviewer.yaml
+    role: >
+      Reviews the diff for correctness, clarity, and maintainability.
+      Produces the initial findings that the other agents build on.
+    order: 1
+  - name: security-reviewer
+    path: agents/generic/code-reviewer.yaml
+    role: >
+      Performs a focused security pass over the same diff, checking for
+      vulnerabilities identified in the OWASP Top 10 and CWE Top 25.
+    order: 2
+    skill_overrides:
+      - skill: code-analysis
+        focus: "security"
+  - name: test-generator
+    path: agents/generic/test-generator.yaml
+    role: >
+      Generates missing tests for any new or changed code identified by the
+      code-reviewer, targeting the gaps highlighted in the review.
+    order: 3
+workflow: |
+  1. Run the **code-reviewer** agent against the pull request diff to obtain
+     a full quality assessment.
+  2. Run the **security-reviewer** agent against the same diff using the
+     'security' focus override, building on the code-reviewer's context.
+  3. Where the code-reviewer identified untested code paths or gaps in
+     coverage, invoke the **test-generator** agent to fill those gaps.
+  4. Collate the outputs of all three agents into a single review summary,
+     deduplicating any overlapping findings.
+  5. Present the consolidated summary to the pull request author with a
+     clear Approve / Request changes recommendation.
