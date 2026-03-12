@@ -1,0 +1,37 @@
+name: code-analysis
+version: 1.0.0
+description: >
+  Analyses source code for correctness, clarity, maintainability, and
+  adherence to project conventions. Produces structured findings with
+  severity ratings and actionable improvement suggestions.
+parameters:
+  - name: focus
+    description: >
+      Comma-separated list of analysis dimensions to prioritise.
+      Allowed values: correctness, clarity, maintainability, performance,
+      security, conventions.
+    required: false
+    default: "correctness,clarity,maintainability"
+  - name: severity_threshold
+    description: >
+      Minimum severity level to include in findings.
+      Allowed values: info, warning, error.
+    required: false
+    default: "warning"
+instructions: |
+  You are performing a structured code analysis. Follow these steps:
+
+  1. Read the provided code carefully in its entirety before writing any findings.
+  2. Identify issues according to the requested 'focus' dimensions.
+  3. For each finding, record:
+     - Location (file and line range if known)
+     - Severity (info | warning | error)
+     - Dimension (correctness | clarity | maintainability | performance |
+       security | conventions)
+     - Description of the problem
+     - Concrete suggestion for improvement, including an example where helpful
+  4. Suppress findings below the 'severity_threshold'.
+  5. Summarise findings as a Markdown table, followed by detailed sections for
+     each finding.
+  6. End with an overall assessment and a prioritised list of the top three
+     improvements that would have the highest impact.

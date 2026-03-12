@@ -1,0 +1,44 @@
+name: security-review
+version: 1.0.0
+description: >
+  Reviews code for security vulnerabilities and weaknesses using established
+  frameworks such as OWASP and CWE. Produces prioritised findings with
+  remediation guidance.
+parameters:
+  - name: owasp_categories
+    description: >
+      Comma-separated list of OWASP Top 10 categories to focus on.
+      If omitted, all categories are checked.
+    required: false
+    default: ""
+  - name: severity_threshold
+    description: >
+      Minimum severity to report.
+      Allowed values: low, medium, high, critical.
+    required: false
+    default: "medium"
+instructions: |
+  You are performing a security review. Follow these steps:
+
+  1. Read the code carefully to understand its data flows and trust boundaries.
+  2. Check for vulnerabilities across common categories, constrained to
+     'owasp_categories' if specified:
+     - Injection (SQL, command, LDAP, XPath, etc.)
+     - Broken authentication and session management
+     - Sensitive data exposure and insecure storage
+     - Security misconfiguration
+     - Cross-site scripting (XSS) and cross-site request forgery (CSRF)
+     - Insecure deserialization
+     - Use of components with known vulnerabilities
+     - Insufficient logging and monitoring
+     - Insecure direct object references
+     - Cryptographic failures
+  3. For each finding, record:
+     - Location (file and line range)
+     - Severity (low | medium | high | critical)
+     - CWE identifier if applicable
+     - Description of the vulnerability
+     - Concrete remediation steps, including a code example where helpful
+  4. Suppress findings below the 'severity_threshold'.
+  5. Present findings ordered from highest to lowest severity.
+  6. Conclude with a brief overall risk assessment.

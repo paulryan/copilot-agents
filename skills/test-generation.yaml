@@ -1,0 +1,42 @@
+name: test-generation
+version: 1.0.0
+description: >
+  Generates comprehensive automated tests for a given piece of code, including
+  unit tests, edge-case tests, and negative tests. Produces test code that
+  follows the project's existing testing conventions.
+parameters:
+  - name: test_framework
+    description: >
+      The test framework to use (e.g. pytest, jest, junit, nunit).
+      If omitted, the framework is inferred from the project context.
+    required: false
+    default: ""
+  - name: coverage_target
+    description: >
+      Desired code coverage percentage to aim for (0–100).
+    required: false
+    default: "80"
+  - name: include_integration_tests
+    description: >
+      Whether to generate integration tests in addition to unit tests.
+      Allowed values: true | false.
+    required: false
+    default: "false"
+instructions: |
+  You are generating automated tests. Follow these steps:
+
+  1. Analyse the code under test to identify all public functions, methods,
+     and classes.
+  2. For each unit of code, identify:
+     - Happy-path scenarios
+     - Boundary and edge cases
+     - Error and exception paths
+     - Any side effects or dependencies that should be mocked
+  3. Write tests using the specified 'test_framework' (or infer it from
+     imports/config files if none is specified).
+  4. Aim to reach the 'coverage_target' percentage.
+  5. If 'include_integration_tests' is true, add integration tests that
+     exercise multiple components working together.
+  6. Follow existing naming conventions found in the project's test files.
+  7. Add a brief comment above each test explaining what it validates.
+  8. At the end, list any scenarios that could not be covered and explain why.

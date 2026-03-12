@@ -1,0 +1,50 @@
+name: full-stack-development-set
+version: 1.0.0
+description: >
+  A coordinated set of agents for full-stack web development. Combines a
+  JavaScript/TypeScript front-end specialist, a back-end language specialist,
+  a database/API designer, and a documentation writer to cover the full
+  development lifecycle.
+category: set
+agents:
+  - name: javascript-expert
+    path: agents/languages/javascript/javascript-expert.yaml
+    role: >
+      Handles all front-end and Node.js work: React/Vue/Angular components,
+      state management, API integration, and TypeScript types.
+    domain: frontend
+  - name: backend-language-expert
+    path: agents/languages/python/python-expert.yaml
+    role: >
+      Handles server-side logic, REST/GraphQL API implementation, and
+      business logic. Swap the path to the appropriate language expert for
+      your stack (java, csharp, etc.).
+    domain: backend
+  - name: code-reviewer
+    path: agents/generic/code-reviewer.yaml
+    role: >
+      Reviews changes across both front-end and back-end layers, with
+      particular attention to interface contracts between them.
+    domain: cross-cutting
+  - name: documentation-writer
+    path: agents/generic/documentation-writer.yaml
+    role: >
+      Keeps API documentation, README files, and architecture diagrams
+      up to date as the codebase evolves.
+    domain: cross-cutting
+workflow: |
+  1. For front-end tasks (UI components, client-side logic, TypeScript types),
+     delegate to **javascript-expert**.
+  2. For back-end tasks (API endpoints, business logic, data access),
+     delegate to **backend-language-expert** (replace the path with the
+     appropriate language expert for your stack).
+  3. When a feature spans both layers, have each specialist work on their
+     respective part, then run **code-reviewer** over the combined diff to
+     verify the integration contract is correct.
+  4. After each feature or sprint, invoke **documentation-writer** to
+     update affected documentation.
+notes: |
+  - Replace `agents/languages/python/python-expert.yaml` with the language
+    expert that matches your back-end stack.
+  - If the back-end uses a different language for different services, add
+    additional specialist agents to the `agents` list.

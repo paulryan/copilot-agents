@@ -1,0 +1,52 @@
+name: code-modernisation-set
+version: 1.0.0
+description: >
+  A coordinated set of agents for modernising legacy codebases. Combines a
+  language specialist, a refactoring assistant, a test generator, and a
+  code reviewer to incrementally upgrade code quality and language version
+  with safety nets at each step.
+category: set
+agents:
+  - name: language-expert
+    path: agents/languages/python/python-expert.yaml
+    role: >
+      Identifies outdated patterns and proposes idiomatic modern equivalents
+      specific to the target language. Replace the path with the appropriate
+      language expert for your codebase.
+    order: 1
+  - name: test-generator
+    path: agents/generic/test-generator.yaml
+    role: >
+      Generates a characterisation test suite before any refactoring begins,
+      capturing the current behaviour as a safety net.
+    order: 2
+  - name: refactoring-assistant
+    path: agents/generic/refactoring-assistant.yaml
+    role: >
+      Applies the modernisation changes identified by the language expert,
+      one transformation at a time, verifying tests remain green.
+    order: 3
+  - name: code-reviewer
+    path: agents/generic/code-reviewer.yaml
+    role: >
+      Reviews the final modernised code to ensure quality, completeness,
+      and that no unintended behaviour changes were introduced.
+    order: 4
+workflow: |
+  1. **language-expert** analyses the legacy code and produces an ordered list
+     of modernisation opportunities (e.g. upgrading syntax, removing
+     deprecated APIs, applying new language features).
+  2. **test-generator** writes characterisation tests that document the
+     current behaviour of the code to be modernised. These tests must pass
+     before any refactoring begins.
+  3. **refactoring-assistant** applies each modernisation change from the
+     list, one at a time. After each change, confirm the characterisation
+     tests and any existing tests still pass.
+  4. **code-reviewer** reviews the final state of the modernised code and
+     confirms there are no regressions or quality issues.
+  5. Merge only after the code-reviewer gives approval.
+notes: |
+  - Replace `agents/languages/python/python-expert.yaml` with the language
+    expert that matches your codebase.
+  - If the codebase spans multiple languages, add multiple language experts
+    and run each with its corresponding subset of files.
