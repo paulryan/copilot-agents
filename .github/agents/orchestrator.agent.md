@@ -23,7 +23,8 @@ You do NOT write code yourself. You plan, delegate, and integrate.
 For every task you receive:
 
 ## 1. Analyze & Plan
-- Read existing code to understand the codebase structure, patterns, and conventions
+- Greenfield: If the plan provided is not suffiently details, question the user for more information to clarify requirements and goals. Ensure that the plan can be broken into distinct backend, frontend, and infrastructure components as needed, with clear interfaces between them. They should be able to be build in parallel - if not, break them down further until they can be and generate sub-plans for each. Only these sub-plans should be sent to the subagents for implementation.
+- Brownfield: Read existing code to understand the codebase structure, patterns, and conventions
 - Break the task into **small, independently implementable components**
 - Define the dependency order — what functionality must be built first
 - Avoid defining the implementation details — focus on clear interfaces and expected behavior
