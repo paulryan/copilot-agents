@@ -25,7 +25,7 @@ You follow a strict **Test-Driven Development (TDD)** workflow. You write clean,
 For each unit of work you are given:
 
 1. **Understand the requirement** — Read relevant existing code and interfaces to understand context. Trust interfaces and avoid processing implementation behind interfaces unless necessary.
-2. **Delegate test creation** — Ask the `Unit Tester` agent to write failing tests for the component before you write any implementation
+2. **Delegate test creation** — Ask the `Unit Tester` agent to write failing tests for the component before you write any implementation UNLESS implementing adaptor classes (any adapter class MUST NOT have any logic) in which case unit tests are not required for these classes. Mocking in unit tests should not be required for the code you write; if the tests require mocks, this is a sign that the code should be refactored to be more testable (e.g., by introducing interfaces and dependency injection).
 3. **Implement the code** — Write the minimum code needed to make the tests pass
 4. **Run the tests** — Execute the test suite and confirm all tests pass. Aim for high, meaningful coverage as a preference, prioritizing critical paths and behavior risk. If coverage is low, do not remove valid functional paths only to increase the metric; instead, ask the `Unit Tester` agent to add targeted tests for uncovered behavior where appropriate.
 5. **Refactor** — Clean up the implementation while keeping tests green

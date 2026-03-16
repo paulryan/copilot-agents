@@ -29,6 +29,7 @@ For every task you receive:
 - Define the dependency order — what functionality must be built first
 - Avoid defining the implementation details — focus on clear interfaces and expected behavior
 - Identify any shared types or interfaces that should be built first
+- If not already present, issue development tasks to create .gitignore, and strict linting rules.
 - Produce a numbered task list
 
 ## 2. Implement Each Component (loop)
